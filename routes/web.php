@@ -37,4 +37,4 @@ require __DIR__.'/auth.php';
 
 route::get('admin/dashboard', [HomeController::class, 'index'])->middleware();
 
-Route::resource('products', ProductController::class);
+Route::resource('products', ProductController::class, 'index');

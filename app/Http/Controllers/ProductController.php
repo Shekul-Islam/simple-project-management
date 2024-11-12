@@ -45,6 +45,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
+        $product = Product::findOrFail($id);
         return view('products.show', compact('product'));
     }
 
@@ -53,6 +54,7 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
+        $product = Product::finOrFail($id);
         return view('products.edit', compact('product'));
     }
 
@@ -67,7 +69,8 @@ class ProductController extends Controller
             'quantity' => 'required|integer',
         ]);
 
-        $products->update($request->all());
+        $product = Product::findOrFail($id);
+        $product->update($request->all());
 
         return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
@@ -77,7 +80,8 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        $products->delete();
+        $product = Product::findOrFail($id);
+        $product->delete();
 
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
